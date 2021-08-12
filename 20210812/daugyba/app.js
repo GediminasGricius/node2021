@@ -13,20 +13,24 @@ const server=http.createServer((req, resp)=>{
     resp.write("<html>");
     resp.write("<head><title>Puslapis</title>");
     resp.write("<style>");
-    resp.write("td { width:30px; height:30px; text-align:center; } ")
+    resp.write("td { width:30px; height:30px; text-align:center; background-color:#eee; } ");
+    resp.write("td.red {background-color: #f99; } ")
 
     resp.write("</style>");
-
+    
     resp.write("</head>");
     resp.write("<body>");
     resp.write("<h1>Daugybos lentele</h1>");
 
     resp.write("<table border='1'>");
-
     for (let i=1; i<=10; i++){
         resp.write("<tr>");
         for(let y=1; y<=10; y++){
-            resp.write("<td>"+(i*y)+"</td>")
+            if (i===1 || y===1){ 
+                resp.write("<td class='red'>"+(i*y)+"</td>");
+            }else{
+                resp.write("<td>"+(i*y)+"</td>");
+            }
         }
         resp.write("</tr>");
     }
