@@ -17,7 +17,7 @@ const server=http.createServer( (req, resp)=>{
            let bs=Buffer.concat(body).toString();
            console.log("Gavau visa informacija:"+bs);
            let x=bs.split('=')[1] ;
-           x=x.replace("+"," ");
+           x=x.replace( /\+/g ," ");
            fs.appendFileSync("duomenys.txt",x+"\n");
 
            resp.setHeader('Content-Type','text/html');
