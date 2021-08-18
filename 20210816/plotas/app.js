@@ -30,10 +30,13 @@ const server=http.createServer((req,res)=>{
             let data=fs.readFileSync('result.html','utf-8');
             //Pakeičiame data kintamajame teksta {{rezultatas}} į kintamajį p
             data=data.replace("{{rezultatas}}",p);
+            data=data.replace("{{plotis}}",plotis);
+            data=data.replace("{{ilgis}}",ilgis);
             //Nustatome headerį
             res.setHeader('Content-Type', 'text/html');
             //Išvedame data į naršyklę
             res.write(data);
+            debugger
             return res.end();
         });
     }else{
