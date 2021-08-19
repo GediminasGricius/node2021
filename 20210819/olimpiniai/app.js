@@ -2,7 +2,8 @@ const http=require('http'); //Prisidedame HTTP moduli
 const fs=require('fs');     //Prisidedame FS moduli
 const path = require('path');
 const metai=require('./metai');
-
+var converter = require('number-to-words');
+var ordinal = require('ordinal')
 
 //Sukuriam serveri ir paduodame f-ją kuri aptarnaus vartotojų užklausas
 const server=http.createServer((req, res)=>{
@@ -39,7 +40,7 @@ const server=http.createServer((req, res)=>{
             let stream=fs.readFileSync('./template/index.html','utf-8'); //Nuskaitome failo turinį į kintamąjį stream
            
             if (metai.arOlimpiniai(m)){
-                stream=stream.replace("{{result}}", m+" yra olimpiniai. Jų numeris: <b>"+metai.olimpinisNumeris(m)+"</b>");
+                stream=stream.replace("{{result}}", m+" yra olimpiniai. Number: <b>"+ordinal(metai.olimpinisNumeris(m))+"</b>");
             }else{
                 stream=stream.replace("{{result}}", m+" metai nėra olimpiniai");
             }
