@@ -1,5 +1,6 @@
 const request=require('postman-request');  //Kintamajame request bus užkrautas modulis postman-request
 
+
 //Reikalaujame dviejų kintamųjų - vietos ir funkcijos
 const forecast=(place, callback)=>{
     //URL į kurį kreipsimės
@@ -12,14 +13,22 @@ const forecast=(place, callback)=>{
     //Ši funkcija palies asinchroninį kodą ir vykdoma kai baigs pagrindinė f-ja (sistema) darbą
     
    
+    //Request callback funkciją iškviečia asinchroniniu būdu
     request({url:url}, (error, response)=>{
         const data=response.body;       //Gautą atsakymą (JSON) išsaugome į kintamąjį (String)
         const weather=JSON.parse(data); //Iš string'o (JSON) pagaminame objektą
-     
-        callback(weather.forecastTimestamps[0].airTemperature);
-
+        const fc=[];
+        
+        weather.forecastTimestamps.forEach((d)=>{
+            fc.push({
+                date:d.forecastTimeUtc,
+                temperature:d.airTemperature
+            });
+          
+        });
+        callback(fc);
     });
-   
+    
    
 }
 
