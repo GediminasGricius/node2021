@@ -17,6 +17,7 @@ const forecast=(place, callback)=>{
     request({url:url}, (error, response)=>{
         const data=response.body;       //Gautą atsakymą (JSON) išsaugome į kintamąjį (String)
         const weather=JSON.parse(data); //Iš string'o (JSON) pagaminame objektą
+        
         const fc=[];
         
         weather.forecastTimestamps.forEach((d)=>{
@@ -27,6 +28,7 @@ const forecast=(place, callback)=>{
           
         });
         callback(fc);
+        
     });
     
    
