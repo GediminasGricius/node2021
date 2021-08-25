@@ -8,18 +8,26 @@ const currency=(from, to, callback)=>{
 
     const url='https://api.frankfurter.app/'+start+'..'+end+'?from='+from+'&to='+to;
     request({url:url},(error, response)=>{
-       const data=JSON.parse(response.body);
-       const rates=[];
-       let i=0;
-       for (const [date, rate] of (Object.entries(data.rates)).reverse()){
-           i++;
-           if (i>10) break;
-           rates.push({
-                date:date,
-                rate:rate[to]
-           });
-       }
-       callback(rates.reverse());
+       
+        if (response!=null && response.statusCode===200){
+            //console.log(error);
+            //
+            
+            const data=JSON.parse(response.body);
+                const rates=[];
+                let i=0;
+                for (const [date, rate] of (Object.entries(data.rates)).reverse()){
+                    i++;
+                    if (i>10) break;
+                    rates.push({
+                            date:date,
+                            rate:rate[to]
+                    });
+                }
+            callback(rates.reverse());
+        }else{
+            callback([]);
+        }
     });
 }
 
