@@ -17,7 +17,7 @@ function generatePlacesSelegit(places){
 //Susikuriame serverį
 const server=http.createServer((req,res)=>{
     let url=req.url;
-    
+     
     if (url==='/'){
         //Pasiimame places ir vykdome asinchroninę funkciją
         places((places)=>{
