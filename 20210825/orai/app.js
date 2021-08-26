@@ -3,7 +3,8 @@ const http=require('http');
 const fs=require('fs');
 const path=require('path');
 
-function generatePlacesSelect(places){
+
+function generatePlacesSelegit(places){
     //Generuojame select'ą ir jį patalpinsime į index.html
     let s='<select class="form-control select2" name="place">';
     places.forEach((d)=>{
@@ -71,10 +72,10 @@ server.listen(3000, 'localhost');
 
 
 /*
-forecast('klaipeda', (temp)=>{
+forecast('vilnius', (temp)=>{
     console.log("Temperaturos prognozės: ");
     temp.forEach((d)=>{
         console.log("Diena: "+d.date+"\t Temperatura: "+d.temperature);
-    });
+    }); 
 });
 */
