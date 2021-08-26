@@ -45,7 +45,6 @@ const currencies=(callback)=>{
             });
         }
         callback(ca);
-
     });
 }
 

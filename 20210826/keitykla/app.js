@@ -33,7 +33,6 @@ const server=http.createServer((req,res)=>{
             let stream=fs.readFileSync('./template/index.html','utf-8');
             stream=stream.replace('{{from}}', generateSelect(ca,'from'));
             stream=stream.replace('{{to}}', generateSelect(ca,'to'));
-            //stream=stream.replace('{{places}}',generatePlacesSelect(places));
             res.setHeader('Content-type','text/html');
             res.write(stream);
             return res.end();
