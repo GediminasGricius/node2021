@@ -51,10 +51,25 @@ const server=http.createServer((req,res)=>{
             currency(from,to, (rates)=>{
                 res.setHeader('Content-Type','text/html');
                 let stream=fs.readFileSync('./template/temp.html', 'utf-8');
-                stream=stream.replace('{{from}}',  generateSelect(ca,'from'));
+                stream=stream.replace('{{from}}',  generateSelect(ca,'from')); 
                 stream=stream.replace('{{to}}',    generateSelect(ca,'to'));
                 stream=stream.replace('{{rates}}', generateTable(rates));
-                stream=stream.replace('{{name}}', from+" - "+to);
+                console.log(from);
+                console.log(ca);
+                let fromName='';
+                ca.forEach((d)=>{
+                    if (d.code===from){
+                        fromName=d.name;
+                    }
+                });
+                let  toName='';
+                ca.forEach((d)=>{
+                    if (d.code===to){
+                        toName=d.name;
+                    }
+                });
+
+                stream=stream.replace('{{name}}', fromName+"("+from+")"+" - "+toName+"("+to+")");
                 res.write(stream);
                 res.end();
             });
@@ -77,11 +92,11 @@ currency('EUR','EUR', (rates)=>{
 */
 
 
-
+/*
 currencies((ca)=>{
     console.log(ca);
 });
-
+*/
 //let str='from=EUR&to=USD';   //from=EUR              to=USD
 /*
 console.log(str.split('&')[0].split('=')[1]);

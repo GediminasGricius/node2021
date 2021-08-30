@@ -37,7 +37,7 @@ const currencies=(callback)=>{
         const currencies=JSON.parse(response.body);
         const ca=[];
         for (const [code, name] of Object.entries(currencies) ){
-            console.log("Kodas: "+code+" Pavadinimas: "+name );
+            
             ca.push({
                 code:code,
                 name:name
