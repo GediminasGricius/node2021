@@ -15,7 +15,8 @@ app.get('/users',(req,res,next)=>{
 });
 
 app.post('/add_user',(req,res,next)=>{
-   
+    let vardas=req.body.vardas;
+    let pavarde=req.body.pavarde;
     res.send("<h1>Pridėti vartotoją</h1>"+"Vartotojo vardas: "+req.body.vardas+"<br>Pavarde:"+req.body.pavarde);
 });
 
