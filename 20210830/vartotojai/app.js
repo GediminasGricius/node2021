@@ -1,11 +1,11 @@
 const express=require('express');
-const requestIp = require('request-ip');
+
 const app=express();
 
 app.use(express.urlencoded({extended:false}));
 
 app.use((req, res, next)=>{
-     console.log("Atejo naujas vartotojas: "+requestIp.getClientIp(req)+" "+req.url);
+     console.log("Atejo naujas vartotojas:  "+req.url);
     
      next();
 });
