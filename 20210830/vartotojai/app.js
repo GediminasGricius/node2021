@@ -9,6 +9,8 @@ const path = require('path');
 
 const app=express();
 
+app.set('view engine','hbs');
+
 //Užregistruojame Body-parser middleware kuris sutvarko atsiųstus duomenis
 app.use(express.urlencoded({extended:false}));
 
