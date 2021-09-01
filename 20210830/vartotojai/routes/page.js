@@ -7,7 +7,7 @@ const router=express.Router();
 
 //Jei vartotojas atėjo į pagrindinį puslapį / mes jam išvedame informaciją
 router.get('/',(req,res,next)=>{
-    res.send("<h1>Pagrindinis puslapis</h1>");
+    res.render('index');
  });
 
  //Middleware kuris aptarnauja bet kokius (visus) url ir išveda, kad toks puslapis neegzistuoja
