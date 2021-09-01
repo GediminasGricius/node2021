@@ -11,10 +11,14 @@ const app=express();
 
 //Užregistruojame Body-parser middleware kuris sutvarko atsiųstus duomenis
 app.use(express.urlencoded({extended:false}));
+
+//Registruojame express.static middleware kuris pagal užklausas atsiųs failus iš katalogo, 
+//kurį mes padavėme kaip kintamajį middleware sukūrimo f-jai
 app.use(express.static(path.join(__dirname,'public')));
 app.use(systemRouter);
-app.use(pageRouter);
 app.use('/user',userRouter);
+app.use(pageRouter);
+
 
 
 
