@@ -1,4 +1,6 @@
 const express=require('express');
+const menu=require('./../modules/menu');
+const feedback=require('./../modules/feedback');
 
 const router=express.Router();
 
@@ -7,15 +9,24 @@ router.get('/', (req,res, next)=>{
 });
 
 router.get('/meniu', (req,res,next)=>{
-    res.render('menu');
+    const restoranMenu = menu.getMenu();
+    res.render('menu', {
+        title : 'Restorano meniu',
+        menu: restoranMenu
+    });
 });
 
 router.get('/atsiliepimai', (req,res,next)=>{
-    res.render('feedback');
+    const fb=feedback.getFeedback();
+    res.render('feedback',{
+        title : 'Atsiliepimai',
+        feedbacks: fb
+    });
 });
 
 router.post('/atsiliepimai', (req,res,next)=>{
-
+    feedback.addFeedback(req.body.name, req.body.text);
+    res.redirect('/atsiliepimai');
 });
 
 router.get('/kontaktai', (req, res, next)=>{
