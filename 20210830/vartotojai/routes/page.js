@@ -22,5 +22,6 @@ router.get('/',(req,res,next)=>{
 
  });
 
+ 
 //Exportuojame router objektą su mūsų middlewares
 module.exports=router;

@@ -24,6 +24,7 @@ app.set('view engine','hbs');
 app.set('views',viewsPath);
 hbs.registerPartials(partialsPath);
 
+
 //Užregistruojame Body-parser middleware kuris sutvarko atsiųstus duomenis
 app.use(express.urlencoded({extended:false}));
 
