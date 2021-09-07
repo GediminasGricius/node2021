@@ -5,7 +5,10 @@ const feedback=require('./../modules/feedback');
 const router=express.Router();
 
 router.get('/', (req,res, next)=>{
-    res.render('index');
+   
+    res.render('index', {
+        title : 'Restoranas Jūros žvaigždė'
+    });
 });
 
 router.get('/meniu', (req,res,next)=>{
@@ -30,9 +33,16 @@ router.post('/atsiliepimai', (req,res,next)=>{
 });
 
 router.get('/kontaktai', (req, res, next)=>{
-    res.render('contacts');
+    res.render('contacts',{
+        title : 'Kontaktai',
+       // feedbacks: fb
+    });
 });
 
+router.post('/delete', (req, res, next)=>{
+   console.log("Istrinti: "+req.body.no);
+   res.redirect('/atsiliepimai');
+});
 
 
 module.exports=router;

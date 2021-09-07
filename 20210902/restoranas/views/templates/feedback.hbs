@@ -22,6 +22,12 @@
                                 <h5 class="card-title">{{name}}</h5>
                                 <p class="card-text">{{text}}</p>
                             </div>
+                            <div class="card-body">
+                                <form action="/delete" method="POST">
+                                    <input type="hidden" name="no" value="{{ @index }}">
+                                    <button type="submit">Trinti</button>
+                                </form>
+                            </div>
                         </div>
                         {{~/each}} 
                         <hr>
