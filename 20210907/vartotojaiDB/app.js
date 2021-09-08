@@ -7,9 +7,11 @@ const {MongoClient, ObjectId}=require('mongodb');
 
 const connectionURL='mongodb://127.0.0.1:27017'; //Duomenų bazės vieta (serveris)
 const dbName='vartotojai';                       //Duomenų bazės pavadinimas
-
+function labas () {
+    console.log("asd");
+}
 //Jungiamies prie duomenų bazės
-MongoClient.connect(connectionURL, (error, client)=>{
+MongoClient.connect(connectionURL,  async (error, client)=>{
     if (error){  //Jei klaida, tuomet informuojame ir išeiname iš programos
         return console.log("Nepavyksta prisijungti!");
     }
@@ -17,6 +19,23 @@ MongoClient.connect(connectionURL, (error, client)=>{
     console.log("Prisijungta prie duomenų bazės");
 
     const db=client.db(dbName); //Jungiamies prie DB (jei nėra, tai ją sukurs)
+
+/*
+    db.collection('vardai').findOne({
+        vardas: "Gediminas" 
+    }, (error, user)=>{
+        if (error){
+            return "Įvyko klaida paimant įrašą";
+        }
+        console.log(user);
+    });
+*/
+    let user= await db.collection('vardai').findOne({_id: new ObjectId("6137a705e0a83665d9934260") }); 
+    let kiekis= await db.collection('vardai').find({vardas:user.vardas}).count();
+    
+    console.log(user)
+    console.log("ads",kiekis);
+    
     
    /* //Vartotojo pridėjimas į duomenų bazę
     db.collection('vardai').insertOne({
@@ -52,8 +71,15 @@ MongoClient.connect(connectionURL, (error, client)=>{
         console.log(users);
    });
    */
-
+  /*
+   const kiekis=await db.collection('vardai').find({
+    vardas:"Jonas"
+   }).count();
+   console.log("Viso Jonu: "+kiekis);
    //Suzinokime kiek yra Jonu
+   db.collection('vardai').findOne()
+   */
+   /*
    db.collection('vardai').find({
     vardas:"Jonas"
    }).count((error, kiekis)=>{
@@ -62,4 +88,5 @@ MongoClient.connect(connectionURL, (error, client)=>{
         }
         console.log("Viso Jonu: "+kiekis);
    });
+   */
 });
