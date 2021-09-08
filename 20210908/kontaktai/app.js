@@ -18,6 +18,7 @@ const app=express();
 //Konfiguracija
 app.set('view engine','hbs');
 app.set('views', viewsPath);
+
 hbs.registerPartials(partialsPath);
 
 //Middleware / Route registracija
@@ -26,6 +27,9 @@ app.use(express.urlencoded({extended:false}));
 app.use(pageRoute);
 MongoClient.connect(connectionURL).then((client)=>{
     const db=client.db(dbName);
-    console.log("Prisijungėme prie duomenų bazės")
+    global.db=db;
+    console.log("Prisijungėme prie duomenų bazės");
 });
+
+
 app.listen(3000);

@@ -17,13 +17,15 @@
                             <th>El. paštas</th>
                             <th>Tipas</th>
                         </tr>
+                        {{#each contacts}}
                         <tr>
-                            <td>Gediminas</td>
-                            <td>Gricius</td>
-                            <td>84652123</td>
-                            <td>gediminas@bit.lt</td>
-                            <td>Kita</td>
+                            <td>{{name}}</td>
+                            <td>{{surname}}</td>
+                            <td>{{phone}}</td>
+                            <td>{{email}}</td>
+                            <td>{{type}}</td>
                         </tr>
+                        {{~/each}}
                        
                     </table>
                 </div>
