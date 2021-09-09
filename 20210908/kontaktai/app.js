@@ -5,6 +5,7 @@ const {MongoClient, ObjectId}=require('mongodb');
 const path=require('path');
 const pageRoute=require('./routes/page');
 
+
 //Konstantos 
 const viewsPath=path.join(__dirname,'views','templates');
 const partialsPath=path.join(__dirname,'views','partials');
@@ -28,7 +29,10 @@ app.use(pageRoute);
 MongoClient.connect(connectionURL).then((client)=>{
     const db=client.db(dbName);
     global.db=db;
+   
     console.log("Prisijungėme prie duomenų bazės");
+}).catch(()=>{
+    
 });
 
 
