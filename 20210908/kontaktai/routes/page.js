@@ -20,8 +20,11 @@ router.get('/new', async (req, res, next)=>{
 });
 //Vykdome naujo įrašo pridėjimą
 router.post('/new', (req, res, next)=>{
+    let c=req.body;
+    c.age=parseInt(req.body.age);
     //Idedame įrašus į duomenų bazę
-    db.collection('contacts').insertOne(req.body).then((result)=>{
+    db.collection('contacts').insertOne(c).then((result)=>{
+     
         res.redirect('/');
     });
     
@@ -44,12 +47,14 @@ router.get('/edit', async (req, res, next)=>{
 
 //Vyksta įrašo atnaujinimas, id paduodamas per GET kintamąjį, įrašai per POST
 router.post('/edit', async (req, res, next)=>{
+  let c=req.body;
+  c.age=parseInt(req.body.age)
   db.collection('contacts').updateOne({
     _id:new ObjectId(req.query.id)
   },{
     //$set - atlieka įrašų pakeitimą 
     //req.body yra pilnas objektas su visais atributais, todėl į set mes jį visą tiesai ir siunčiam
-    $set:req.body
+    $set:c
   });
   res.redirect('/');
 });
